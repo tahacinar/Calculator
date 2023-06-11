@@ -25,10 +25,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onAllclearClick(view: View) {}
+    fun onAllclearClick(view: View) {
+        binding.dataTv.text = ""
+        binding.resultTv.text = ""
+        stateError = false
+        lastDot = false
+        lastNumeric = false
+        binding.resultTv.visibility = View.GONE
 
+    }
 
-    fun onEqualClick(view: View) {}
+    fun onEqualClick(view: View) {
+
+        onEqual()
+        binding.dataTv.text = binding.resultTv.text.toString().drop(1)
+    }
 
 
     fun onDigitClick(view: View) {
