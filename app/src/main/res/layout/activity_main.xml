@@ -10,7 +10,7 @@
         android:id="@+id/data_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="24+67"
+        android:text=""
         android:textAlignment="viewEnd"
         android:textSize="28dp"
         android:layout_marginEnd="12dp"
@@ -23,7 +23,7 @@
         android:id="@+id/result_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="=91"
+        android:text=""
         android:textAlignment="viewEnd"
         android:textSize="28dp"
         android:layout_marginEnd="12dp"
@@ -226,6 +226,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_equal"
                 style="@style/operatorbutton"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/btnBackground2"
                 android:onClick="onEqualClick"
                 android:text="="/>
 

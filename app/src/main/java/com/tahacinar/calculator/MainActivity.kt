@@ -11,6 +11,7 @@ import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.ArithmeticException
 
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     fun onAllclearClick(view: View) {
@@ -32,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         lastDot = false
         lastNumeric = false
         binding.resultTv.visibility = View.GONE
-
     }
 
     fun onEqualClick(view: View) {
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         onEqual()
         binding.dataTv.text = binding.resultTv.text.toString().drop(1)
     }
-
 
     fun onDigitClick(view: View) {
         if (stateError){
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         onEqual()
     }
 
-
     fun onOperatorClick(view: View) {
         if (!stateError && lastNumeric){
 
@@ -63,17 +62,30 @@ class MainActivity : AppCompatActivity() {
             lastDot = false
             lastNumeric = false
             onEqual()
+
         }
+    }
 
+    fun onBackClick(view: View) {
+        binding.dataTv.text = binding.dataTv.text.toString().dropLast(1)
 
-
+        try {
+            val lastChar = binding.dataTv.text.toString().last()
+            if (lastChar.isDigit()){
+                onEqual()
+            }
+        }catch (e : Exception){
+            binding.resultTv.text = ""
+            binding.resultTv.visibility = View.GONE
+            Log.e("last char error",e.toString())
+        }
     }
 
 
-    fun onBackClick(view: View) {}
-
-
-    fun onClearClick(view: View) {}
+    fun onClearClick(view: View) {
+        binding.dataTv.text = ""
+        lastNumeric = false
+    }
 
     fun onEqual(){
 
